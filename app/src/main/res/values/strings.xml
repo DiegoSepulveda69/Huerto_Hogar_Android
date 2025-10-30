@@ -1,0 +1,12 @@
+<>
+    <string name="app_name">Huerto Hogar</string>
+    <string name="btn_login_text">Ingresar</string>
+    <string name="hint_email">Ingrese Correo</string>
+    <string name="hint_password">Ingrese Contraseña</string>
+    <string name="logo_description">Logo Huerto Hogar</string>
+
+    <string name="boton_productos">Ver Productos</string>
+    <string name="textview_menu_principal">Inicio</string>
+
+    <string name="textview_productos">Productos de la Cosecha 🍎🥦</string>
+</resources>
