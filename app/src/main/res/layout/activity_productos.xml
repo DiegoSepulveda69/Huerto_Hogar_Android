@@ -41,7 +41,7 @@
         android:id="@+id/btn_ver_carrito"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Ver Carrito y Pagar (3 productos)"
+        android:text="Ver Carrito y Pagar"
         android:backgroundTint="@color/h_h_verde_principal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

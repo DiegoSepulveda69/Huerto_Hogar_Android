@@ -11,7 +11,7 @@
         android:id="@+id/txt_pago"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Procesar Pago"
+        android:text="@string/procesar_pago"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/h_h_verde_principal"

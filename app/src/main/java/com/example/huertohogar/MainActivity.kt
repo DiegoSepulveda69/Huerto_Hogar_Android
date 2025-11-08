@@ -16,18 +16,18 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val emailEditText = findViewById<EditText>(R.id.txt_lg_correo)
-        val passWordEditText = findViewById<EditText>(R.id.txt_lg_contrasena)
+        val emailEditText = findViewById<EditText>(R.id.et_lg_correo)
+        val passWordEditText = findViewById<EditText>(R.id.et_lg_contrasena)
         val loginButton = findViewById<Button>(R.id.btn_login)
 
-        val email_ficticio = "test@huerto.com"
-        val contrasena_ficticio = "12345"
+        val emailFicticio = "test@huerto.com"
+        val contrasenaFicticio = "12345"
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passWordEditText.text.toString()
 
-            if (email == email_ficticio && password == contrasena_ficticio) {
+            if (email == emailFicticio && password == contrasenaFicticio) {
                 Toast.makeText(this, "Bienvenido/a/e a Huerto Hogar!", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, MenuPrincipalActivity::class.java)
