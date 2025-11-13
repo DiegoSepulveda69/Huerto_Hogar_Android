@@ -11,4 +11,6 @@
     <string name="procesar_pago">Procesar Pago</string>
 
     <string name="textview_productos">Productos de la Cosecha 🍎🥦</string>
+
+    <string name="btn_carrito_pagar">Ver Carrito y Pagar</string>
 </resources>
