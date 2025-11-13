@@ -14,12 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HuertoHogar">
         <activity
-            android:name=".PagoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductosActivity"
-            android:exported="false" />
-        <activity
             android:name=".MenuPrincipalActivity"
             android:exported="false" />
         <activity

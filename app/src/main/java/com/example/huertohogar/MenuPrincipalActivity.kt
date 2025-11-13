@@ -15,12 +15,7 @@ class MenuPrincipalActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu_principal)
 
-        val productosButton = findViewById<Button>(R.id.btn_ir_a_productos)
 
-        productosButton.setOnClickListener {
-            val intent = Intent(this, ProductosActivity::class.java)
-            startActivity(intent)
-        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

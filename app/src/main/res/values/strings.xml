@@ -5,12 +5,6 @@
     <string name="hint_password">Ingrese Contraseña</string>
     <string name="logo_description">Logo Huerto Hogar</string>
 
-    <string name="boton_productos">Ver Productos</string>
     <string name="textview_menu_principal">Inicio</string>
 
-    <string name="procesar_pago">Procesar Pago</string>
-
-    <string name="textview_productos">Productos de la Cosecha 🍎🥦</string>
-
-    <string name="btn_carrito_pagar">Ver Carrito y Pagar</string>
 </resources>
