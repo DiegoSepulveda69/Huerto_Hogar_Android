@@ -7,4 +7,6 @@
 
     <string name="textview_menu_principal">Inicio</string>
 
+    <string name="button_anadir_producto">Añadir Producto</string>
+
 </resources>

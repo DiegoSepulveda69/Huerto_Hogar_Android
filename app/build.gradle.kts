@@ -54,4 +54,7 @@ dependencies {
     // Coroutines para manejar operaciones asíncronas
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+
+    // Gemini AI
+    implementation("com.google.ai.client.generativeai:generativeai:0.8.0")
 }
