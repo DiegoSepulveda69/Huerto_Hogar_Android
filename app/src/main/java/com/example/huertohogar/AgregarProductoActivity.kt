@@ -122,7 +122,7 @@ class AgregarProductoActivity : AppCompatActivity() {
             try {
                 val response = withContext(Dispatchers.IO) {
                     val prompt = "Genera una descripción corta (máximo 2 frases) y atractiva para un producto llamado: '$productName'. Enfócate en sus beneficios."
-                    geminiModel.generateContent(prompt) // 👈 Llamada a la API
+                    geminiModel.generateContent(prompt)
                 }
 
                 val generatedText = response.text ?: "Descripción no disponible."
