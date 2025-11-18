@@ -10,6 +10,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.ai.client.generativeai.GenerativeModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.Serializable // Para simular el almacenamiento simple
 
 private const val REQUEST_IMAGE_CAPTURE = 1
@@ -24,6 +29,8 @@ data class Producto(
 
 class AgregarProductoActivity : AppCompatActivity() {
 
+    private val GEMINI_API_KEY_DIRECT = "AIzaSyDrJoxqBPL1WAdE5HhCK2JjYru7T6PNuM8"
+
     private lateinit var nameEditText: EditText
     private lateinit var descriptionEditText: EditText
     private lateinit var priceEditText: EditText
@@ -32,8 +39,10 @@ class AgregarProductoActivity : AppCompatActivity() {
     private lateinit var generateDescriptionButton: Button
     private lateinit var capturePhotoButton: Button
     private lateinit var saveButton: Button
-
     private var capturedImage: Bitmap? = null
+
+    private lateinit var geminiModel: GenerativeModel
+    private val activityScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +56,26 @@ class AgregarProductoActivity : AppCompatActivity() {
         capturePhotoButton = findViewById(R.id.button_capture_photo)
         saveButton = findViewById(R.id.button_save_product)
 
+        try {
+            geminiModel = GenerativeModel(
+                modelName = "gemini-2.5-flash",
+                apiKey = GEMINI_API_KEY_DIRECT
+            )
+        } catch (e: Exception) {
+            Log.e("GeminiSetup", "Error al inicializar GenerativeModel: ${e.message}")
+            Toast.makeText(this, "Error de configuración de Gemini.", Toast.LENGTH_LONG).show()
+        }
+
         capturePhotoButton.setOnClickListener {
             dispatchTakePictureIntent()
         }
 
         saveButton.setOnClickListener {
             saveProductForTest()
+        }
+
+        generateDescriptionButton.setOnClickListener {
+            generateDescription()
         }
 
         supportActionBar?.title = "Agregar Nuevo Producto"
@@ -80,6 +103,46 @@ class AgregarProductoActivity : AppCompatActivity() {
                 Toast.makeText(this, "Foto capturada y mostrada.", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Error al capturar la foto.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun generateDescription() {
+        val productName = nameEditText.text.toString().trim()
+
+        if (productName.isBlank()) {
+            Toast.makeText(this, "Por favor, introduce un nombre de producto.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Desactivar el botón y mostrar estado de carga
+        generateDescriptionButton.isEnabled = false
+        generateDescriptionButton.text = "Generando..."
+
+        // Iniciar una Coroutine en el Scope de la Activity (Hilo Principal)
+        activityScope.launch {
+            try {
+                // El trabajo de red debe ocurrir en un hilo de IO (Coroutines)
+                val response = withContext(Dispatchers.IO) {
+                    val prompt = "Genera una descripción corta (máximo 2 frases) y atractiva para un producto llamado: '$productName'. Enfócate en sus beneficios."
+                    geminiModel.generateContent(prompt) // 👈 Llamada a la API
+                }
+
+                // El resultado se procesa de vuelta en el Hilo Principal (Main)
+                val generatedText = response.text ?: "Descripción no disponible."
+
+                // [6] Mostrar el resultado
+                descriptionEditText.setText(generatedText.trim())
+                Toast.makeText(this@AgregarProductoActivity, "Descripción generada.", Toast.LENGTH_SHORT).show()
+
+            } catch (e: Exception) {
+                Log.e("Gemini", "Error al generar la descripción: ${e.message}")
+                Toast.makeText(this@AgregarProductoActivity, "Error de la API: ${e.message}", Toast.LENGTH_LONG).show()
+
+            } finally {
+                // Reactivar el botón
+                generateDescriptionButton.isEnabled = true
+                generateDescriptionButton.text = "Generar Descripción"
             }
         }
     }
