@@ -15,7 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.Serializable // Para simular el almacenamiento simple
+import java.io.Serializable
 
 private const val REQUEST_IMAGE_CAPTURE = 1
 
@@ -115,23 +115,18 @@ class AgregarProductoActivity : AppCompatActivity() {
             return
         }
 
-        // Desactivar el botón y mostrar estado de carga
         generateDescriptionButton.isEnabled = false
         generateDescriptionButton.text = "Generando..."
 
-        // Iniciar una Coroutine en el Scope de la Activity (Hilo Principal)
         activityScope.launch {
             try {
-                // El trabajo de red debe ocurrir en un hilo de IO (Coroutines)
                 val response = withContext(Dispatchers.IO) {
                     val prompt = "Genera una descripción corta (máximo 2 frases) y atractiva para un producto llamado: '$productName'. Enfócate en sus beneficios."
                     geminiModel.generateContent(prompt) // 👈 Llamada a la API
                 }
 
-                // El resultado se procesa de vuelta en el Hilo Principal (Main)
                 val generatedText = response.text ?: "Descripción no disponible."
 
-                // [6] Mostrar el resultado
                 descriptionEditText.setText(generatedText.trim())
                 Toast.makeText(this@AgregarProductoActivity, "Descripción generada.", Toast.LENGTH_SHORT).show()
 
@@ -140,7 +135,6 @@ class AgregarProductoActivity : AppCompatActivity() {
                 Toast.makeText(this@AgregarProductoActivity, "Error de la API: ${e.message}", Toast.LENGTH_LONG).show()
 
             } finally {
-                // Reactivar el botón
                 generateDescriptionButton.isEnabled = true
                 generateDescriptionButton.text = "Generar Descripción"
             }
@@ -148,7 +142,6 @@ class AgregarProductoActivity : AppCompatActivity() {
     }
 
     private fun saveProductForTest() {
-        // 1. Recolección y validación de datos
         val nombre = nameEditText.text.toString()
         val descripcion = descriptionEditText.text.toString()
         val precioStr = priceEditText.text.toString()
