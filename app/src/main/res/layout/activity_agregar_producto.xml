@@ -5,17 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".AgregarProductoActivity">
+    tools:context=".AgregarProductoActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
-        <!-- Campo 1: Nombre del Producto -->
+        <!-- Nombre del Producto -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="16dp"
             android:hint="Nombre del Producto">
 
@@ -27,7 +30,7 @@
                 android:minHeight="48dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Campo 2: Descripción (con botón Gemini) -->
+        <!-- Descripción con botón Gemini -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,7 +65,7 @@
                 android:layout_marginStart="8dp" />
         </LinearLayout>
 
-        <!-- Campo 3: Precio -->
+        <!-- Precio -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,7 +80,7 @@
                 android:minHeight="48dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Campo 4: Stock -->
+        <!-- Stock -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,7 +95,7 @@
                 android:minHeight="48dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Sección de Foto/Cámara -->
+        <!-- Sección Foto/Cámara -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +107,7 @@
         <ImageView
             android:id="@+id/image_view_foto"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="400dp"
             android:scaleType="centerInside"
             android:background="#E0E0E0"
             android:layout_marginBottom="8dp"
@@ -124,6 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guardar Producto"
+            android:layout_marginBottom="80dp"
             android:padding="12dp"
             android:textColor="@android:color/white"/>
 

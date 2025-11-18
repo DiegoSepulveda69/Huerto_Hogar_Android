@@ -38,7 +38,6 @@
   <component name="ChangeListManager">
     <list default="true" id="586a9ea6-8daf-4774-bd20-5a4eae9154b0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/huertohogar/AgregarProductoActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/huertohogar/AgregarProductoActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_agregar_producto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_agregar_producto.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
